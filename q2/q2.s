@@ -55,7 +55,7 @@ while_loop:
     slli t1, t1, 3
     add t1, s0, t1
     ld t1, 0(t1)         
-    slli t2, t4, 3 # Dummy
+    slli t2, t4, 3 
     slli t2, s4, 3
     add t2, s0, t2
     ld t2, 0(t2)         
@@ -107,5 +107,5 @@ exit_program:
     ret
 
 .section .rodata
-fmt_int: .string "%d "
+fmt_int: .string "%ld "
 fmt_nl: .string "\n"
