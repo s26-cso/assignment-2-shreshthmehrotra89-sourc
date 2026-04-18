@@ -86,7 +86,14 @@ print_loop:
     slli t0, s4, 3
     add t0, s1, t0
     ld a1, 0(t0)   #nge[i]
+    addi t0, s4, 1
+    beq t0, s3, print_last  #if last element, no space
     la a0, fmt_int
+    call printf
+    addi s4, s4, 1
+    j print_loop
+print_last:
+    la a0, fmt_int_nl
     call printf
     addi s4, s4, 1
     j print_loop
@@ -109,3 +116,4 @@ exit_program:
 .section .rodata
 fmt_int: .string "%ld "
 fmt_nl: .string "\n"
+fmt_int_nl: .string "%ld"
