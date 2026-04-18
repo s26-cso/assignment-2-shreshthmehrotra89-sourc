@@ -10,13 +10,13 @@ int main() {
     while (scanf("%5s %d %d", op, &num1, &num2) == 3) {
         
         char libname[20];
-        snprintf(libname, sizeof(libname), "lib%s.so", op);
+        snprintf(libname, sizeof(libname), "./lib%s.so", op);
 
         
         void *handle = dlopen(libname, RTLD_LAZY);
         if (!handle) {
             fprintf(stderr, "Error loading library %s: %s\n", libname, dlerror());
-            return 1;
+            continue;
         }
 
         
@@ -30,7 +30,7 @@ int main() {
         if (err) {
             fprintf(stderr, "Error finding symbol %s: %s\n", op, err);
             dlclose(handle);
-            return 1;
+            continue;
         }
 
         
